@@ -1,0 +1,21 @@
+{
+  "name": "forest-qa-automation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "cucumber-js tests/features --require-module ts-node/register --require tests/steps/**/*.ts",
+    "report": "ts-node generate-report.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@cucumber/cucumber": "^12.7.0",
+    "@playwright/test": "^1.58.2",
+    "@types/node": "^25.3.5",
+    "multiple-cucumber-html-reporter": "^3.10.0",
+    "playwright": "^1.58.2",
+    "ts-node": "^10.9.2"
+  }
+}
