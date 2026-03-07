@@ -19,6 +19,10 @@ export async function launchBrowser(): Promise<Page> {
 
   page = await context.newPage();
 
+  page.on("console", (msg) => {
+    console.log("Browser log:", msg.text());
+  });
+
   await context.tracing.start({
     screenshots: true,
     snapshots: true,
