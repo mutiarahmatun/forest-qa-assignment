@@ -6,8 +6,8 @@ let page: Page;
 
 export async function launchBrowser(): Promise<Page> {
   browser = await chromium.launch({
-    headless: false,
-    slowMo: 100,
+    headless: process.env.CI ? true : false,
+    slowMo: process.env.CI ? 0 : 100,
   });
 
   context = await browser.newContext({
