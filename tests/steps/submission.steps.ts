@@ -117,9 +117,15 @@ Then('submission should appear in "Completed"', async () => {
 
 After(async function (scenario) {
   if (scenario.result?.status === "FAILED") {
-    const screenshot = await page.screenshot();
+    const screenshot = await page?.screenshot();
 
-    const fileName = `reports/screenshots/${Date.now()}.png`;
+    const dir = "reports/screenshots";
+
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir, { recursive: true });
+    }
+
+    const fileName = `${dir}/${Date.now()}.png`;
 
     fs.writeFileSync(fileName, screenshot);
 
