@@ -1,20 +1,25 @@
 import { Page } from "@playwright/test";
 
 export class LoginPage {
+  // Centralized locators as static readonly properties
+  private static readonly locators = {
+    userId: "#userId",
+    password: "#password",
+    submitButton: "#submitButton",
+    loginUrl:
+      "https://krisdemo.sqlview.com.sg/KRIS/login.do?method=reloadLogin",
+  };
+
   constructor(private page: Page) {}
 
   async goto() {
-    await this.page.goto(
-      "https://krisdemo.sqlview.com.sg/KRIS/login.do?method=reloadLogin",
-    );
+    await this.page.goto(LoginPage.locators.loginUrl);
   }
 
   async login(username: string, password: string) {
-    await this.page.locator("#userId").fill(username);
-    await this.page.locator("#password").fill(password);
-
-    await this.page.locator("#submitButton").click();
-
+    await this.page.locator(LoginPage.locators.userId).fill(username);
+    await this.page.locator(LoginPage.locators.password).fill(password);
+    await this.page.locator(LoginPage.locators.submitButton).click();
     await this.page.waitForLoadState("networkidle");
   }
 }
