@@ -6,7 +6,6 @@ import {
   After,
 } from "@cucumber/cucumber";
 import { Page } from "playwright";
-
 import { launchBrowser, closeBrowser } from "../../fixtures/browser.fixture";
 import { LoginPage } from "../../pages/login.page";
 import { SubmissionPage } from "../../pages/submission.page";
@@ -42,6 +41,7 @@ Given("user login as approver", async () => {
 
   loginPage = new LoginPage(page);
   approvalPage = new ApprovalPage(page);
+  completedPage = new CompletedPage(page);
 
   await loginPage.goto();
 
@@ -74,6 +74,10 @@ When("user submits the submission", async () => {
   await submissionPage.verifyPendingApproval();
 });
 
+When("requester closes the browser", async function () {
+  await closeBrowser();
+});
+
 When("user terminates the submission sucessfully", async function () {
   await submissionPage.terminate();
   await submissionPage.verifyTerminatedStatus("Terminated");
@@ -103,6 +107,7 @@ When("approver approves a pending submission", async function () {
 Then('submission status should be "Approved"', async () => {
   await approvalPage.verifyApproved();
   await approvalPage.closeApprovalDialog();
+  await approvalPage.verifySubmissionHeaderApproved();
 });
 
 Then('submission should appear in "Completed"', async () => {

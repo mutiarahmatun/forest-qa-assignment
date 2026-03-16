@@ -21,6 +21,7 @@ Feature: KRIS E-Submission Workflow
     When user opens the E-Submission module
     And user creates a new "For Approval" submission
     And user submits the submission
+    And requester closes the browser
 
     Given user login as approver
     When approver approves a pending submission

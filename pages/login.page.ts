@@ -1,7 +1,6 @@
 import { Page } from "@playwright/test";
 
 export class LoginPage {
-  // Centralized locators as static readonly properties
   private static readonly locators = {
     userId: "#userId",
     password: "#password",

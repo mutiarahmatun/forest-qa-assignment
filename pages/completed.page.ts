@@ -1,7 +1,6 @@
 import { expect, Page } from "@playwright/test";
 
 export class CompletedPage {
-  // Centralized locators as static readonly properties
   private static readonly locators = {
     participatedTab: ".naviga-title",
     participatedTabHasText: "Participated",
@@ -24,7 +23,9 @@ export class CompletedPage {
       },
     );
     await participatedTab.waitFor({ state: "visible" });
+    console.log("Clicking on Participated tab");
     await participatedTab.click();
+    console.log("Clicked on Participated tab, now clicking on Completed tab");
 
     const completedTab = this.page.getByRole(
       CompletedPage.locators.completedTabRole,
@@ -33,7 +34,9 @@ export class CompletedPage {
       },
     );
     await completedTab.waitFor({ state: "visible" });
+    console.log("Showing Completed tab");
     await completedTab.click();
+    console.log("Clicked on Completed tab");
   }
 
   async verifySubmissionInCompleted(submissionTitle: string) {

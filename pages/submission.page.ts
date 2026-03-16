@@ -3,7 +3,6 @@ import { generateSubmissionTitle } from "../utils/test-data";
 import path from "path";
 
 export class SubmissionPage {
-  // Centralized static text and file paths
   private static readonly TEXT = {
     forApproval: "For Approval",
     add: "Add",

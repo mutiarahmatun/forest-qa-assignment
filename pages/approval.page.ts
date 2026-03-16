@@ -1,7 +1,6 @@
 import { Page, expect } from "@playwright/test";
 
 export class ApprovalPage {
-  // Locators centralized as static readonly properties
   private static readonly locators = {
     workTreeShowIds: "#workTreeShowIds",
     approval: "#qtip-10-content #workflowEnableId",
